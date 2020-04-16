@@ -1,2 +1,7 @@
 # awesome-config
-My awesome wm config. See README for details.
+My awesome wm config. 
+
+Requires: 
+compton
+feh
+xscreensaver
