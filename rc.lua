@@ -48,7 +48,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -305,6 +305,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
+    awful.key({ modkey, "Control"   }, "l", function () awful.spawn.with_shell("xscreensaver-command -lock &")	end,
+              {description = "lock system", group = "awesome"}),
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
@@ -581,5 +583,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("compton -bcCGf -i 0.8 -e 0.8 --sw-opti")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("xscreensaver -no-splash")
+awful.spawn.with_shell("$HOME/.screenlayout/external-monitor.sh")
 -- awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("feh --randomize --bg-fill /home/rclemens/Pictures/Wallpaper/Use/")
